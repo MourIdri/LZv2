@@ -198,6 +198,23 @@ module "security-rg" {
     projectowner="it_transverse_cloud_team"
   }
 }
+module "akv-lz" {
+  source               = "./modules/akv"
+  current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
+  current-name-convention-core-module  = "${var.current-name-convention-core-main}"
+  preferred-location-module = "${var.preferred-location-main}"
+  module-resource-module-rg = "security-${var.current-name-convention-core-main}-rg"
+  tags-akv-module = {
+    environment = "production"
+    scope_1="shared_infrastructure"
+    scope_2="core_infrastructure"
+    type_1="network_security"
+    type_2="storage"
+    lob="it_infrastructure"
+    business_location="corpc"
+    projectowner="it_transverse_cloud_team"}
+  akv_depend_on_module = [module.security-rg]
+}
 module "Azure-bastion" {
   source               = "./modules/bastion"
   current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"

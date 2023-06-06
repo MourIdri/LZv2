@@ -2,23 +2,19 @@
 ############################
 # GENERAL TENANT VARIABLES #
 ############################
-variable "module-resource-module-rg" {
-  type    = any
-  default = null
-}
 variable "preferred-location-module" {
-  description = "Location of the network"
-  default = null
+  description = "Location global variable "
+  #default     = "#"
 }
-
-variable "second-location-module" {
-  description = "Location of the network"
-  default = null
+variable "module-resource-module-rg" {
+  description = "Location local module "
+  #default     = ""
 }
 variable "current-name-convention-core-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
-  #default     = "crpc-prod-shar-hub"
+  description = " "
+  #default     = ""
 }
+
 variable "current-name-convention-core-public-module" {
   type    = any
   default = null

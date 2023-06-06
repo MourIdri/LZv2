@@ -1,35 +1,32 @@
+variable "preferred-location-module" {
+  description = "Location global variable "
+  #default     = "#"
+}
 variable "module-resource-module-rg" {
   type    = any
   default = null
 }
-variable "preferred-location-module" {
-  description = "Location of the network"
+variable "current-name-convention-core-module" {
+  type    = any
+  default = null
+}
+variable "current-name-convention-core-public-module" {
+  type    = any
   default = null
 }
 variable "azbastion_depend_on_module" {
-  description = "Location of the network"
+  type    = any
   default = null
 }
 variable "bastion-subnet-id-output-module" {
-  description = "Lbastion"
+  type    = any
   default = null
 }
 variable "tags-bastion-module" {
-  description = "Lbastion"
-  default = null
-}
-variable "second-location-module" {
-  description = "Location of the network"
-  default = null
-}
-variable "current-name-convention-core-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
+  type    = any
   default = null
 }
 
-variable "current-name-convention-core-public-module" {
-  description = "Every PUBLIC accesed and resolved ressources has a core model crcprdshrhubstolog "
-  default = null
-}
+
 
 

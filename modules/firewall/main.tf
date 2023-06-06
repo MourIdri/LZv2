@@ -2,6 +2,7 @@ resource "azurerm_firewall_policy" "Default-Az-Fw-Policy" {
   name                = "policy-default-${var.current-name-convention-core-public-module}-fw"
   location                 = "${var.preferred-location-module}"
   resource_group_name      = "${var.module-resource-module-rg}"
+  depends_on = [var.frw_depend_on_module]
   sku = "Standard"
 }
 resource "azurerm_public_ip" "azfw-pip-firewall" {
@@ -21,6 +22,7 @@ resource "azurerm_firewall" "azfwmain" {
   sku_tier            = "Standard"
   tags = "${var.tags-fw-logging-module}"
   firewall_policy_id = azurerm_firewall_policy.Default-Az-Fw-Policy.id
+  depends_on = [var.frw_depend_on_module]
   ip_configuration {
     name                 = "IPconf${var.current-name-convention-core-public-module}-fw"
     subnet_id            = "${var.fw-subnet-id-output-module}"

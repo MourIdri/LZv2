@@ -4,17 +4,19 @@
 ############################
 
 variable "preferred-location-module" {
-  description = "Location of the network"
-  default     = "westeurope"
+  type    = any
+  default = null
 }
 variable "current-name-convention-core-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
-  #default     = "crpc-prod-shar-hub"
+  type    = any
+  default = null
 }
+
 variable "current-name-convention-core-public-module" {
-  description = "Every PUBLIC accesed and resolved ressources has a core model crcprdshrhubstolog "
-  #default     = "crcprdshrhub"
+  type    = any
+  default = null
 }
+
 variable "tags-vnet-module" {
   type    = any
   default = null

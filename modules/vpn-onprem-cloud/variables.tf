@@ -3,22 +3,21 @@
 ############################
 
 variable "preferred-location-module" {
-  description = "Location of the network"
-  #default     = "westeurope"
+  description = "Location global variable "
+  #default     = "#"
 }
-
 variable "module-resource-module-rg" {
-  description = "Location of the network"
-  #default     = "westeurope"
+  description = "Location local module "
+  #default     = ""
 }
 variable "current-name-convention-core-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
-  #default     = "crpc-prod-shar-hub"
+  description = " "
+  #default     = ""
 }
 
 variable "current-name-convention-core-public-module" {
-  description = "Every PUBLIC accesed and resolved ressources has a core model crcprdshrhubstolog "
-  #default     = "crcprdshrhub"
+  description = ""
+  #default     = "#"
 }
 variable "subnet_out_id_module" {
   type    = any

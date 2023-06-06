@@ -1,36 +1,28 @@
-############################
-# GENERAL TENANT VARIABLES #
-############################
+variable "preferred-location-module" {
+  type    = any
+  default = null
+}
 variable "module-resource-module-rg" {
   type    = any
   default = null
 }
-variable "preferred-location-module" {
-  description = "Location of the network"
-  default     = "westeurope"
-}
-
-variable "second-location-module" {
-  description = "Location of the network"
-  default     = "northeurope"
-}
 variable "current-name-convention-core-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
-  default     = "crpc-prod-shar-hub"
+  type    = any
+  default = null
 }
 
 variable "current-name-convention-core-public-module" {
-  description = "Every PUBLIC accesed and resolved ressources has a core model crcprdshrhubstolog "
-  default     = "crcprdshrhub"
+  type    = any
+  default = null
 }
 
 variable "preferred-tier-storage-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
+  description = "preferred tier  "
   default     = "Standard"
 }
 
 variable "preferred-tier-storage-replication-module" {
-  description = "Every ressources has a core model crpc-prod-shar-hub-subnet-publicdmzin "
+  description = " replication "
   default     = "LRS"
 }
 variable "tags-sto-logging-module" {
