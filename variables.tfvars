@@ -2,10 +2,10 @@
 # Authentication variables #
 ############################
 # Add you service endpoint access strings
-azure-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-tenant-id ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-client-app-id = "9f93e56b-9e76-4477-956d-1254f6654968"
+azure-subscription-id = "474d0847-4d68-46c6-8c21-a4ff1f238293"
+azure-client-secret-password = "izZ8Q~6dL6z~6fIIvLaxWBBHEvFn93RU0pt5icQ7"
+azure-tenant-id ="8d4c969b-1f65-483b-b58a-4765b08a2829"
 ###############################
 # GENERAL  Naming VARIABLES   #
 ###############################
