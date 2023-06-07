@@ -18,12 +18,9 @@ module "network-rg" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"
-  }
+    type_1="network"
+    type_2="security"
+   }
 }
 module "AzureDDOS" {
   source               = "./modules/ddos"
@@ -35,11 +32,9 @@ module "AzureDDOS" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+   }
   ddos_depend_on_module = [module.security-rg]
 }
 module "hub-network" {
@@ -52,11 +47,9 @@ module "hub-network" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network_Azure_is_better"
+    type_2="security"
+   }
   ip-range-vnet-module = "${var.current-vnet-space}"
   name-vnet-module = "${var.current-vnet-name}"
   ip-range-GatewaySubnet-module = "${var.current-GatewaySubnet-space}"
@@ -76,6 +69,22 @@ module "hub-network" {
   vnet_depend_on_module = [module.network-rg,module.AzureDDOS]
   ddos-plan-id-output-module = "${module.AzureDDOS.DDOS_plan_id}"
 }
+module "Azure-Private-DNS-Hub" {
+  source               = "./modules/private-dns-zone"
+  current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
+  current-name-convention-core-module  = "${var.current-name-convention-core-main}"
+  preferred-location-module = "${var.preferred-location-main}"
+  module-resource-module-rg = "network-${var.current-name-convention-core-main}-rg"
+  hub-vnet-id-output-module = "${module.hub-network.Azure_HUB_vnet_id}"
+  module-domain-private-dns-domain-for-vnet-module =  "${var.domain-private-dns-domain-for-vnet-main}"
+  tags-pdnsz-logging-module = {
+    environment = "production"
+    scope_1="shared_infrastructure"
+    scope_2="core_infrastructure"
+    type_1="network_security"
+    type_2="system"}
+  pdnsz_depend_on_module = [module.hub-network]
+}
 module "Azurefirewall" {
   source               = "./modules/firewall"
   current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
@@ -86,11 +95,9 @@ module "Azurefirewall" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+   }
   frw_depend_on_module = [module.hub-network]
   fw-subnet-id-output-module = "${module.hub-network.Azure_firewall_subnet_id}"
   ip-range-vnet-module = "${var.current-vnet-space}"
@@ -148,12 +155,9 @@ module "monitoring-rg" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"
-  }
+    type_1="system"
+    type_2="monitoring"
+   }
 }
 module "logging" {
   source               = "./modules/logging"
@@ -166,21 +170,17 @@ module "logging" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="system"
+    type_2="monitoring"
+   }
   stoc_depend_on_module = [module.monitoring-rg ]
   tags-repo-logging-module = {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="logging"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="system"
+    type_2="monitoring"
+   }
   logacc_depend_on_module = [module.monitoring-rg]
 }
 module "security-rg" {
@@ -191,12 +191,9 @@ module "security-rg" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"
-  }
+    type_1="system"
+    type_2="security"
+   }
 }
 module "akv-lz" {
   source               = "./modules/akv"
@@ -208,11 +205,9 @@ module "akv-lz" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+   }
   akv_depend_on_module = [module.security-rg]
 }
 module "Azure-bastion" {
@@ -226,11 +221,9 @@ module "Azure-bastion" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+   }
   azbastion_depend_on_module = [module.security-rg]
 }
 module "Azure-AppGW" {
@@ -244,11 +237,9 @@ module "Azure-AppGW" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+   }
   azappgw_depend_on_module = [module.security-rg]
 }
 module "mgmt-rg" {
@@ -259,12 +250,9 @@ module "mgmt-rg" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"
-  }
+    type_1="management"
+    type_2="shared-services"
+   }
 }
 module "backup-rg" {
   source               = "./modules/rg"
@@ -274,12 +262,9 @@ module "backup-rg" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="network"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"
-  }
+    type_1="system"
+    type_2="bcdr"
+   }
 }
 module "Azure-BCDR" {
   source               = "./modules/backup"
@@ -291,14 +276,13 @@ module "Azure-BCDR" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="system"
+    type_2="bcdr"
+   }
   azbcdr_depend_on_module = [module.backup-rg]
 }
 module "vpn-onprem" {
+  
   source               = "./modules/vpn-onprem-cloud"
   current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
   current-name-convention-core-module  = "${var.current-name-convention-core-main}"
@@ -308,25 +292,19 @@ module "vpn-onprem" {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
+    type_1="network"
+    type_2="security"
+    }
   tags-onprem-1-standard-connect-module =  {
     environment = "production"
     scope_1="shared_infrastructure"
     scope_2="core_infrastructure"
-    type_1="network_security"
-    type_2="storage"
-    lob="it_infrastructure"
-    business_location="corpc"
-    projectowner="it_transverse_cloud_team"}
-
+    type_1="network"
+    type_2="security"
+    }
   vpn_gw_depend_on = [module.hub-network]
   subnet-vpn-target-id-module = "${module.hub-network.Azure_Gateway_subnet_id}"
   iprange-onprem-module = "${var.VPN-Session-IPRange-onprem-local-router}"
   ipaddress-routeur-onprem-1-module = "${var.publicIP-onprem-local-router}"
   s2s-connection-pass = "${var.s2ssharedPassconnectionKey}"
-  
   }

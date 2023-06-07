@@ -2,10 +2,10 @@
 # Authentication variables #
 ############################
 # Add you service endpoint access strings
-azure-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-azure-tenant-id ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-tenant-id ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 ###############################
 # GENERAL  Naming VARIABLES   #
 ###############################
@@ -32,6 +32,7 @@ current-SharedServices-space = "172.16.0.64/27"
 current-SharedServices-subnet-name = "Snet-SS"
 current-Mgmt-space = "172.16.2.192/26"
 current-Mgmt-subnet-name = "Snet-Mgmt"
+domain-private-dns-domain-for-vnet-main  = "ajn.net"
 ############################
 # GENERAL VPN S2S VARIABLE #
 ############################

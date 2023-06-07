@@ -28,7 +28,8 @@ resource "azurerm_virtual_network_gateway" "vpn-gw" {
   vpn_type = "RouteBased"
   active_active = false
   enable_bgp    = false
-  sku           = "VpnGw2AZ"
+  generation = "Generation2"
+  sku        = "VpnGw2"
   ip_configuration {
     name                = "IPconfig${var.current-name-convention-core-module}-vpn-gw"
     public_ip_address_id          = azurerm_public_ip.vpn-gw-pip.id
