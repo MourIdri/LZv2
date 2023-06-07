@@ -1,11 +1,22 @@
 
 provider "azurerm" {
+
+  backend "azurerm" {
+    resource_group_name  = "github-tstate-rg"
+    storage_account_name = "githubtfstate20863"
+    container_name       = "tfstate"
+    key                  = "ynZHcrHHHFPF0L6yIHwaO9KyTsbZufhjtxaKz43nFfPxLOv0P5ZWWqIsOufo9MgRLvESghKcBoy9+AStV6wKXg=="
+  }
+  required_providers {
+    azurerm = {
+      version = "~>3.2"
+      source  = "hashicorp/azurerm"
+    }
+  }
+  
+  
   version="3.59.0"
   features {}
-  subscription_id = "${var.azure-subscription-id}"
-  client_id       = "${var.azure-client-app-id}"
-  client_secret   = "${var.azure-client-secret-password}"
-   tenant_id       = "${var.azure-tenant-id}"
 }
 module "management-groups" {
   source               = "./modules/management-groups"
