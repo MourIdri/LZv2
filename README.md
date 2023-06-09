@@ -1,21 +1,14 @@
 # LZv2 Deploying an Azure Landing zone using modules 
 
-1 - create a SPN with subscription scope
+1 - create a SPN for each subscription scope
 
-    # Create service principal
-    $spCredentials = az ad sp create-for-rbac --name SP_Azure_IaC_ops_1 | ConvertFrom-Json
+    az ad sp create-for-rbac --name SP_iac_1  --role contributor  --scopes /subscriptions/subscription_id_1
+    az ad sp create-for-rbac --name SP_iac_2  --role contributor  --scopes /subscriptions/subscription_id_2
+    az ad sp create-for-rbac --name SP_iac_3  --role contributor  --scopes /subscriptions/subscription_id_3
 
-    # Get SP details
-    $spDetails = az ad sp show --id $spCredentials.appId | ConvertFrom-Json
-
-    # Create contributor role assignment for subscription1
-    az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "contributor" --scope /subscriptions/mySubscriptionID_of_Subscription_1
-
-    # Create network contributor role assignment for subscription1
-    az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "network contributor" --scope /subscriptions/mySubscriptionID_of_Subscription_1
-
-    # Create contributor role assignment for subscription2
-    az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "contributor"--scope /subscriptions/mySubscriptionID_of_Subscription_2
+2 - Copy the SPN's details in the variable.tfvars file. Note that the default provider will also have the SP_iac_1 details as this is fo rthe HUB
 
 
-2 - copy the SPN's details in the variable.tf file. 
+3 - Start the script 
+
+
