@@ -7,9 +7,6 @@ output "Azure_firewall_subnet_id" {
 output "Azure_Gateway_subnet_id" {
   value = azurerm_subnet.GatewaySubnet.id
 }
-output "Azure_Mgmt_subnet_id" {
-  value = azurerm_subnet.Mgmt.id
-}
 output "Azure_SharedServices_subnet_id" {
   value = azurerm_subnet.SharedServices.id
 }

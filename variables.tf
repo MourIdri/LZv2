@@ -2,17 +2,56 @@
 # Authentication variables #
 ############################
 # Add you service endpoint access strings
-
-variable "azure-client-app-id" {
+# Subscription default
+variable "azure-default-client-app-id" {
     description="The Client ID of the Service Principal."
 }
-variable "azure-subscription-id" {
+variable "azure-default-subscription-id" {
     description="The ID of the Azure Subscription in which to run the Acceptance Tests."
 }
-variable "azure-client-secret-password" {
+variable "azure-default-client-secret-password" {
     description="The Client Secret associated with the Service Principal."
 }
-variable "azure-tenant-id" {
+variable "azure-default-tenant-id" {
+    description="The Tenant ID to use."
+}
+# Subscription 1 AJN-Hub
+variable "azure-AJN-Hub-client-app-id" {
+    description="The Client ID of the Service Principal."
+}
+variable "azure-AJN-Hub-subscription-id" {
+    description="The ID of the Azure Subscription in which to run the Acceptance Tests."
+}
+variable "azure-AJN-Hub-client-secret-password" {
+    description="The Client Secret associated with the Service Principal."
+}
+variable "azure-AJN-Hub-tenant-id" {
+    description="The Tenant ID to use."
+}
+# Subscription 2 AJN-Management
+variable "azure-AJN-Management-client-app-id" {
+    description="The Client ID of the Service Principal."
+}
+variable "azure-AJN-Management-subscription-id" {
+    description="The ID of the Azure Subscription in which to run the Acceptance Tests."
+}
+variable "azure-AJN-Management-client-secret-password" {
+    description="The Client Secret associated with the Service Principal."
+}
+variable "azure-AJN-Management-tenant-id" {
+    description="The Tenant ID to use."
+}
+# Subscription 3 AJN-Backup
+variable "azure-AJN-Backup-client-app-id" {
+    description="The Client ID of the Service Principal."
+}
+variable "azure-AJN-Backup-subscription-id" {
+    description="The ID of the Azure Subscription in which to run the Acceptance Tests."
+}
+variable "azure-AJN-Backup-client-secret-password" {
+    description="The Client Secret associated with the Service Principal."
+}
+variable "azure-AJN-Backup-tenant-id" {
     description="The Tenant ID to use."
 }
 
@@ -94,15 +133,6 @@ variable "current-SharedServices-subnet-name" {
   description = "defining the SharedServices name using a variable"
   type = any
 }
-variable "current-Mgmt-space" {
-  description = "defining the Mgmt using a variable"
-  type = any
-  #default     = "172.16.2.192/26"
-}
-variable "current-Mgmt-subnet-name" {
-  description = "defining the Mgmt name using a variable"
-  type = any
-}
 variable "domain-private-dns-domain-for-vnet-main" {
   description = "defining the Mgmt name using a variable"
   type = any
@@ -127,3 +157,32 @@ variable "s2ssharedPassconnectionKey" {
 # GENERAL COMPUTE VARIABLE #
 ###############################################
 #LOGIN PASSWORDS
+variable "vm-jmbx-1-size-current" {
+  description = "Size for JMBX "
+  type = any
+}
+variable "vm-jmbx-1-password-current"{
+  description = "Passwd for JMBX "
+  type = any
+}
+variable "vm-jmbx-1-user-current"  {
+  description = "User for JMBX "
+  type = any
+}
+variable "current-vnet-spoke-space"  {
+  description = "vnet spoke space  "
+  type = any
+}
+variable "current-vnet-spoke-name"  {
+  description = " vnet spoke name "
+  type = any
+}
+variable "current-spoke-subnet-1-space"  {
+  description = "subnet 1 spoke space  "
+  type = any
+}
+variable "current-spoke-subnet-1-name"  {
+  description = "subnet 1 spoke name  "
+  type = any
+}
+

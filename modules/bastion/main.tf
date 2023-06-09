@@ -2,6 +2,7 @@ resource "azurerm_public_ip" "bastion-pip" {
   name                = "pip-${var.current-name-convention-core-public-module}-bastion"
   location                 = "${var.preferred-location-module}"
   resource_group_name      = "${var.module-resource-module-rg}"
+  depends_on = [var.azbastion_depend_on_module]
   allocation_method   = "Static"
   sku                 = "Standard"
 }

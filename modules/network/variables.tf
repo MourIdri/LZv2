@@ -85,16 +85,7 @@ variable "snet-name-AzureAppGW-module" {
   type    = any
   default = null
 }
-variable "ip-range-Mgmt-module" {
-  description = "IP range used to delimite the Mgmt"
-  type    = any
-  default = null
-}
-variable "snet-name-Mgmt-module" {
-  description = "Mgmt name "
-  type    = any
-  default = null
-}
+
 variable "ip-range-SharedServices-module" {
   description = "IP range used to delimite the SharedServices"
   type    = any

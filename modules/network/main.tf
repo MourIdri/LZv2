@@ -47,24 +47,8 @@ resource "azurerm_subnet" "AzureAppGW" {
   address_prefixes     = ["${var.ip-range-AzureAppGW-module}"]
   depends_on = [ azurerm_virtual_network.hub-corpc-vnet]
 }
-resource "azurerm_subnet" "Mgmt" {
-  name                 = "${var.snet-name-Mgmt-module}"
-  resource_group_name = "${var.module-resource-module-rg}"
-  virtual_network_name = "${var.name-vnet-module}"
-  address_prefixes     = ["${var.ip-range-Mgmt-module}"]
-  depends_on = [ azurerm_virtual_network.hub-corpc-vnet]
-}
-resource "azurerm_network_security_group" "Mgmt-nsg" {
-  name                = "${var.snet-name-Mgmt-module}-nsg"
-  location            = "${var.preferred-location-module}"
-  resource_group_name = "${var.module-resource-module-rg}"
-  depends_on = [ azurerm_subnet.Mgmt]
-}
-resource "azurerm_subnet_network_security_group_association" "Mgmt-nsg" {
-  subnet_id                 = azurerm_subnet.Mgmt.id
-  network_security_group_id = azurerm_network_security_group.Mgmt-nsg.id
-  depends_on = [ azurerm_subnet.Mgmt,azurerm_network_security_group.Mgmt-nsg]
-}
+
+
 resource "azurerm_subnet" "SharedServices" {
   name                 = "${var.snet-name-SharedServices-module}"
   resource_group_name = "${var.module-resource-module-rg}"
