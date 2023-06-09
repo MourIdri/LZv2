@@ -36,9 +36,9 @@ provider "azurerm" {
 
 
 
-module "management-groups" {
-  source               = "./modules/management-groups"
-}
+#module "management-groups" {
+#  source               = "./modules/management-groups"
+#}
 module "network-rg" {
   source               = "./modules/rg"
   current-name-convention-core-module  = "network-${var.current-name-convention-core-main}"
@@ -93,8 +93,6 @@ module "hub-network" {
   snet-name-AzureRouteServer-module = "${var.current-AzureRouteServer-subnet-name}"
   ip-range-AzureFirewall-module = "${var.current-AzureFirewall-space}"
   snet-name-AzureFirewall-module = "${var.current-AzureFirewall-subnet-name}"
-  ip-range-AzureBastion-module = "${var.current-AzureBastion-space}"
-  snet-name-AzureBastion-module = "${var.current-AzureBastion-subnet-name}"
   ip-range-AzureAppGW-module = "${var.current-AzureAppGW-space}"
   snet-name-AzureAppGW-module = "${var.current-AzureAppGW-subnet-name}"
   ip-range-SharedServices-module = "${var.current-SharedServices-space}"
@@ -247,24 +245,7 @@ module "akv-lz" {
   akv_depend_on_module = [module.security-rg]
 }
 
-module "Azure-bastion" {
-  source               = "./modules/bastion"
-  # Passing into a module the subscription where the module will be deployed  
-  providers = {azurerm = azurerm.AJN-Hub}    
-  current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
-  current-name-convention-core-module  = "${var.current-name-convention-core-main}"
-  preferred-location-module = "${var.preferred-location-main}"
-  module-resource-module-rg = "security-${var.current-name-convention-core-main}-rg"
-  bastion-subnet-id-output-module = "${module.hub-network.Azure_Bastion_subnet_id}"
-  tags-bastion-module = {
-    environment = "production"
-    scope_1="shared_infrastructure"
-    scope_2="core_infrastructure"
-    type_1="network"
-    type_2="security"
-   }
-  azbastion_depend_on_module = [module.security-rg]
-}
+
 module "Azure-AppGW" {
   source               = "./modules/application-gateway"
   # Passing into a module the subscription where the module will be deployed  
@@ -357,6 +338,8 @@ module "mgmt-spoke" {
   preferred-location-module = "${var.preferred-location-main}"
   rg_default_spoke_depends_on =  [module.security-rg]
   name-vnet-spoke-module = "${var.current-vnet-spoke-name}"
+  ip-range-AzureBastion-module = "${var.current-AzureBastion-space}"
+  snet-name-AzureBastion-module = "${var.current-AzureBastion-subnet-name}"
   ip-range-vnet-spoke-module = "${var.current-vnet-spoke-space}"
   ip-range-default-subnet-spoke-module = "${var.current-spoke-subnet-1-space}"
   snet-name-spoke-subnet-module = "${var.current-spoke-subnet-1-name}"
@@ -374,6 +357,24 @@ module "mgmt-spoke" {
     type_1="management"
     type_2="shared-services"
    }
+}
+module "Azure-bastion" {
+  source               = "./modules/bastion"
+  # Passing into a module the subscription where the module will be deployed  
+  providers = {azurerm = azurerm.AJN-Management}    
+  current-name-convention-core-public-module = "${var.current-name-convention-core-public-main}"
+  current-name-convention-core-module  = "${var.current-name-convention-core-main}"
+  preferred-location-module = "${var.preferred-location-main}"
+  module-resource-module-rg = "mgmt-${var.current-name-convention-core-main}-spk-rg"
+  bastion-subnet-id-output-module = "${module.mgmt-spoke.Azure_Bastion_subnet_id}"
+  tags-bastion-module = {
+    environment = "production"
+    scope_1="shared_infrastructure"
+    scope_2="core_infrastructure"
+    type_1="network"
+    type_2="security"
+   }
+  azbastion_depend_on_module = [module.mgmt-spoke]
 }
 module "Generic-UDR-Mgmt" {
   source               = "./modules/generic-udr"
