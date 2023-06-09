@@ -35,10 +35,11 @@ provider "azurerm" {
 }
 
 
+# Create management group layout 
+module "management-groups" {
+  source               = "./modules/management-groups"
+}
 
-#module "management-groups" {
-#  source               = "./modules/management-groups"
-#}
 module "network-rg" {
   source               = "./modules/rg"
   current-name-convention-core-module  = "network-${var.current-name-convention-core-main}"
