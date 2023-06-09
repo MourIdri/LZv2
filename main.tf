@@ -423,15 +423,18 @@ module "default-jumpboxes" {
 
 module "PA-FW" {
   source               = "./modules/paloalto-autoscale/vmseries_scaleset"
-  # Passing into a module the subscription where the module will be deployed  
+  ##  Passing into a module the subscription where the module will be deployed  
   providers = {azurerm = azurerm.AJN-Hub} 
-  depends_on = [ module.hub-network ]
-  # The below is taking the vnet ID from the existing setup 
+  depends_on = [ module.hub-network, module.vpn-onprem ]
+  ##  The below is taking the vnet ID from the existing setup 
   hub-vnet-id-output-module = "${module.hub-network.Azure_HUB_vnet_id}"
   # Creating a New RG 
-  # importing existing VNET 
-  # create subnet into that Vnet ( PA to share the subnet ranges for each subnet ) , "172.16.1.0/24" is available 
-  # split the the CIDR  "172.16.1.0/24" into 3 subnet  trusted 26 (59 IPs available ) / untrusted 26 (59 IPs available  ) / Mgmt 27 ( 27 IPs available for scaling )
+  ##  importing existing VNET 
+  ##  create subnet into that Vnet ( PA to share the subnet ranges for each subnet ) , "172.16.1.0/24" is available 
+  ##  split the the CIDR  "172.16.1.0/24" into 3 subnet  trusted 26 (59 IPs available ) / untrusted 26 (59 IPs available  ) / Mgmt 27 ( 27 IPs available for scaling )
+  ##  Updating  variable for CPU licenses - to be done at first boot it is on the tfvars called inbound_count_minimum and inbound_count_maximum
+  ##  Updating variable for Scaling threshold  - to be done at first boot it is on the tfvars called scaleout_threshold and scalein_threshold
+  ##  Change the init-cfg.txt with Customer values upfront - to be done at first boot 
   location                     = "westeurope"
   resource_group_name          = "panw-vmss-qatar-rg" # Change it to your name
   virtual_network_name         = "panw-vmss-qatar-vnet" # Change it 
@@ -441,4 +444,5 @@ module "PA-FW" {
   outbound_lb_name             = "outbound-private-ilb"
   inbound_lb_name              = "inbound-public-elb"
   name_scale_set               = "VMSS-qatar" # the suffix 
+
 }
