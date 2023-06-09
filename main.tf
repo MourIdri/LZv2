@@ -440,5 +440,5 @@ module "PA-FW" {
   outbound_name_prefix         = "outbound-qatar"
   outbound_lb_name             = "outbound-private-ilb"
   inbound_lb_name              = "inbound-public-elb"
-  name_scale_set               = "VMSS-qatar" # the suffix
+  name_scale_set               = "VMSS-qatar" # the suffix 
 }

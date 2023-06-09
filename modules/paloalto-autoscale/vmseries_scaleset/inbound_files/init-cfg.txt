@@ -1,0 +1,10 @@
+type=dhcp-client
+panorama-server=40.114.126.192
+auth-key=384414912715498
+dgname=gcp-dg
+tplname=gcp-ts
+plugin-op-commands=panorama-licensing-mode-on
+dhcp-send-hostname=yes
+dhcp-send-client-id=yes
+dhcp-accept-server-hostname=yes
+dhcp-accept-server-domain=yes
