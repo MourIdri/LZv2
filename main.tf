@@ -415,4 +415,30 @@ module "default-jumpboxes" {
     type_2="shared-services"
    }
 }
+######################################################################################################################################
+######################################################################################################################################
+###########################################          ADDING PALO ALTO         ########################################################
+######################################################################################################################################
+######################################################################################################################################
 
+module "PA-FW" {
+  source               = "./modules/paloalto-autoscale/vmseries_scaleset"
+  # Passing into a module the subscription where the module will be deployed  
+  providers = {azurerm = azurerm.AJN-Hub} 
+  depends_on = [ module.hub-network ]
+  # The below is taking the vnet ID from the existing setup 
+  hub-vnet-id-output-module = "${module.hub-network.Azure_HUB_vnet_id}"
+  # Creating a New RG 
+  # importing existing VNET 
+  # create subnet into that Vnet ( PA to share the subnet ranges for each subnet ) , "172.16.1.0/24" is available 
+  # split the the CIDR  "172.16.1.0/24" into 3 subnet  trusted 26 (59 IPs available ) / untrusted 26 (59 IPs available  ) / Mgmt 27 ( 27 IPs available for scaling )
+  location                     = "westeurope"
+  resource_group_name          = "panw-vmss-qatar-rg" # Change it to your name
+  virtual_network_name         = "panw-vmss-qatar-vnet" # Change it 
+  name_prefix                  = "vmseries-qatar"
+  inbound_name_prefix          = "inbound-qatar"
+  outbound_name_prefix         = "outbound-qatar"
+  outbound_lb_name             = "outbound-private-ilb"
+  inbound_lb_name              = "inbound-public-elb"
+  name_scale_set               = "VMSS-qatar" # the suffix
+}
