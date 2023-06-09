@@ -3,25 +3,25 @@
 ############################
 # Add you service endpoint access strings
 # Subscription default 
-azure-default-client-app-id = "6f225529-42dc-4862-bd43-1723360343df"
-azure-default-subscription-id = "d2bdaf1c-f854-4d7d-a579-0d4b709efdeb"
-azure-default-client-secret-password = "2hD8Q~YJhlZy5c2yrGxLJ~1bMXxBB0vU.bwTMchU"
-azure-default-tenant-id ="16b3c013-d300-468d-ac64-7eda0820b6d3"
+azure-default-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-default-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-default-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-default-tenant-id ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 # Subscription Hub
-azure-AJN-Hub-client-app-id = "6f225529-42dc-4862-bd43-1723360343df"
-azure-AJN-Hub-subscription-id = "d2bdaf1c-f854-4d7d-a579-0d4b709efdeb"
-azure-AJN-Hub-client-secret-password = "2hD8Q~YJhlZy5c2yrGxLJ~1bMXxBB0vU.bwTMchU"
-azure-AJN-Hub-tenant-id ="16b3c013-d300-468d-ac64-7eda0820b6d3"
+azure-AJN-Hub-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Hub-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Hub-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Hub-tenant-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 # Subscription management 
-azure-AJN-Management-client-app-id = "f5250635-931f-4784-bdde-a9352d45927b"
-azure-AJN-Management-subscription-id = "3cae269c-98c8-4608-b053-a0b6d44f9974"
-azure-AJN-Management-client-secret-password = "8L88Q~5c.6BSInU25x9hvjJqgmUY7dRikCxrLauS"
-azure-AJN-Management-tenant-id ="16b3c013-d300-468d-ac64-7eda0820b6d3"
+azure-AJN-Management-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Management-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Management-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Management-tenant-id ="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 # Subscription Backup
-azure-AJN-Backup-client-app-id = "6f225529-42dc-4862-bd43-1723360343df"
-azure-AJN-Backup-subscription-id = "d2bdaf1c-f854-4d7d-a579-0d4b709efdeb"
-azure-AJN-Backup-client-secret-password = "2hD8Q~YJhlZy5c2yrGxLJ~1bMXxBB0vU.bwTMchU"
-azure-AJN-Backup-tenant-id ="16b3c013-d300-468d-ac64-7eda0820b6d3"
+azure-AJN-Backup-client-app-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Backup-subscription-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Backup-client-secret-password = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+azure-AJN-Backup-tenant-id = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 ###############################
 # GENERAL  Naming VARIABLES   #
