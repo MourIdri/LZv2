@@ -5,7 +5,19 @@ deploying an Azure Landing zone using modules
 
 2 - copy the SPN's details in the variable.tf file. 
 
-3 - (optional ) there is no Tfvars file so far for automation. It will come in next setup. 
+    # Create service principal
+    
+    $spCredentials = az ad sp create-for-rbac --name SP_1 | ConvertFrom-Json
 
+    # Get SP details
+    
+    $spDetails = az ad sp show --id $spCredentials.appId | ConvertFrom-Json
 
-NOTE : for themanagement groups, you might need the SPN name as Management group contributor to delete them for clean up
+# Create contributor role assignment for subscription1
+az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "contributor" --scope /subscriptions/mySubscriptionID_of_Subscription_1
+
+# Create network contributor role assignment for subscription1
+az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "network contributor" --scope /subscriptions/mySubscriptionID_of_Subscription_1
+
+# Create contributor role assignment for subscription2
+az role assignment create --assignee-principal-type ServicePrincipal --assignee-object-id $spDetails.id --role "contributor"--scope /subscriptions/mySubscriptionID_of_Subscription_2
