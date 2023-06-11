@@ -10,7 +10,6 @@ deploying an Azure Landing zone using modules
     $spCredentials = az ad sp create-for-rbac --name SP_1 | ConvertFrom-Json
 
     # Get SP details
-    
     $spDetails = az ad sp show --id $spCredentials.appId | ConvertFrom-Json
 
 # Create contributor role assignment for subscription1
