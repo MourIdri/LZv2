@@ -38,13 +38,7 @@
     terraform.exe apply -var-file variables.tfvars -lock=false -auto-approve
 
 7 Create separate environment  : 
-
-   By changing variables, you can create a brand-new environment. 
-
-
-
-Note : all paid services are there. 
-Total : 6500$/month of sizing 
-Azure counts 730 hours per month
-8.9$/hours
+    
+    By changing variables, you can create a brand-new environment. 
+    Note : all paid services are there. Total : 6500$/month of sizing / Azure counts 730 hours per month or 8.9$/hours
 
